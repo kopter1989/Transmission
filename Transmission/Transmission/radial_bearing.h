@@ -6,11 +6,11 @@
 class Radial_bearing {
 private:
     double dt = 0.006;
-    double heat = 0.0;
-    long double viscosity = 0.0;
-    double f_0 = 0.7224;
+    double heat = 0.0;            //amount of heat
+    long double viscosity = 0.0; //viscosity of oil
+    double f_0 = 0.7224;          //friction coefficients
     double f_1 = 0.0009;
-    double f_exp = 3.7;
+    double f_exp = 3.7;              //coefficient for the exponent
     double normal_force = 0.0;
     double rps = 0.0;
     double moment_friction = 0.0;

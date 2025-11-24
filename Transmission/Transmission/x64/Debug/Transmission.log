@@ -1,4 +1,5 @@
-﻿  transmission.cpp
-  trust_bearing.cpp
+﻿  gear.cpp
+  main.cpp
+  transmission.cpp
   Создание кода...
   Transmission.vcxproj -> C:\Users\User\Desktop\Transmission\Transmission\x64\Debug\Transmission.exe

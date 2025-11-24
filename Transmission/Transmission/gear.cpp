@@ -6,10 +6,10 @@
 
 
 void Gear::update(double moment_add) {
-    viscosity = exp(f_expon / temperature_of_oil);
-    moment_viscous_friction = 2e-6 * viscosity * pow(diameter, 4) * pow(rps, 2.8);
+    viscosity = exp(f_exp / temperature_of_oil);
+    moment_viscous_friction = f_0 * viscosity * pow(diameter, coef_diameter) * pow(rps, coef_rps);
     force = moment_out / diameter / 2.0;
-    moment_friction_between_tooths = 0.032 * pow(force, 0.2) * pow(viscosity, -0.05);
+    moment_friction_between_tooths = 0.032 * pow(force, coef_force) * pow(viscosity, coef_viscosity);
     moment_friction_between_tooths *= moment_add;
     moment_friction_between_tooths /= z;
 
@@ -25,7 +25,8 @@ void Gear::update(double moment_add) {
     moment_total += r_1.get_moment_friction();
     moment_total += r_2.get_moment_friction();
 
-    heat = dt * moment_total * 2 * M_PI * rps;
+    moment_friction = moment_viscous_friction + moment_friction_between_tooths + r_1.get_moment_friction() + r_2.get_moment_friction();
+    heat = dt * moment_friction * 2 * M_PI * rps;
 }
 
 void Gear::set_temperature_of_oil(double temperature_of_oil_) {

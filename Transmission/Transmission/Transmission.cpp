@@ -5,7 +5,7 @@ void Transmission::update() {
     //rb.update();
     //tb.update();
 
-    for (auto i = std::begin(gears); i != std::end(gears); i++) {   //передаем обороты на шестерни
+    for (auto i = std::begin(gears); i != std::end(gears); i++) {   //transmit revolutions to the gears
         i->set_temperature_of_oil(temperature_of_oil);
         if (i == std::begin(gears)) i->set_rps(rps);
         else {
@@ -13,14 +13,12 @@ void Transmission::update() {
         }
     }
 
-    for (int a = sizeof(gears) / sizeof(gears[0]) - 1; a > -1; a--) {
+    for (int a = sizeof(gears) / sizeof(gears[0]) - 1; a > -1; a--) {    // reverse cycle
         if (a == sizeof(gears) / sizeof(gears[0]) - 1) {
             get_gear(a).update(0.0);
         }
         else {
-            // i->set_moment_out(i->get_moment_out() + (i - 1)->get_moment_total());
             get_gear(a).update(get_gear(a + 1).get_moment_total());
-            //a->update((a + 1)->get_moment_total());
         }
     }
     
@@ -35,13 +33,13 @@ void Transmission::update() {
     moment_friction = rb.get_moment_friction();
 }
 
-void Transmission::set_dt(double dt_) {
+void Transmission::set_dt(double dt_) {  //  time setting
     if (dt_ < 0) dt_ = 0.0;
     dt = dt_;
     rb.set_dt(dt_);
 }
 
-void Transmission::set_axial_force(double axial_force_) {
+void Transmission::set_axial_force(double axial_force_) {    
     if (axial_force_ < 0) axial_force_ = 0.0;
     axial_force = axial_force_;
 }

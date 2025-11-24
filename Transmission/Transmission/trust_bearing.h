@@ -6,18 +6,18 @@
 
 class Trust_bearing {
     double dt = 0.006;
-    double heat;
-    long double viscosity;
-    double f_0 = 0.7224;
+    double heat = 0.0;                //amount of heat
+    double viscosity = 0.0;          //viscosity of oil
+    double f_0 = 0.7224;             //friction coefficients
     double f_1 = 0.0009;
     double f_2 = 0.0009;
-    double f_exp = 3.7;
-    double normal_force;
-    double axial_force;
-    double rps;
-    double moment_friction;
-    double moment_rps;
-    double moment_static;
+    double f_exp = 3.7;             //coefficient for the exponent
+    double normal_force = 0.0;
+    double axial_force = 0.0;
+    double rps = 0.0;
+    double moment_friction = 0.0;
+    double moment_rps = 0.0;
+    double moment_static = 0.0;
     double temperature_of_oil = 288.0;
 public:
     void update();
