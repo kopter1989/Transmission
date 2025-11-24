@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Transmission.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="gear.cpp">
@@ -27,7 +27,7 @@
     <ClCompile Include="trust_bearing.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
-    <ClCompile Include="transmiss.cpp">
+    <ClCompile Include="transmission.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,7 +41,7 @@
     <ClInclude Include="trust_bearing.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="transmiss.h">
+    <ClInclude Include="transmission.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,4 @@
-﻿  Transmission.cpp
-  gear.cpp
-  transmiss.cpp
+﻿  main.cpp
+  transmission.cpp
   Создание кода...
-  Transmission.vcxproj -> C:\Users\User\Desktop\Transmission\Transmission\x64\Debug\Transmission.exe
+C:\Users\User\Desktop\Transmission\Transmission\Transmission\transmission.cpp(1,10): error C1083: Не удается открыть файл включение: transmiss.h: No such file or directory,

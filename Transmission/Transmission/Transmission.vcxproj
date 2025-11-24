@@ -125,14 +125,14 @@
   <ItemGroup>
     <ClCompile Include="gear.cpp" />
     <ClCompile Include="radial_bearing.cpp" />
-    <ClCompile Include="transmiss.cpp" />
-    <ClCompile Include="Transmission.cpp" />
+    <ClCompile Include="transmission.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="trust_bearing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gear.h" />
     <ClInclude Include="radial_bearing.h" />
-    <ClInclude Include="transmiss.h" />
+    <ClInclude Include="transmission.h" />
     <ClInclude Include="trust_bearing.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

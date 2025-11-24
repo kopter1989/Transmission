@@ -1,31 +1,67 @@
-﻿#include <iostream>
 #include "transmiss.h"
-#include <string>
 
-int main() {
-    Transmission T;
-    T.set_rpm(10000.0);
-    T.set_temperature_of_oil(380);
+void Transmission::update() {
+    //g.update();
+    //rb.update();
+    //tb.update();
 
-    for (int i = 0; i < 5; i++) { T.get_gear(i).set_moment_out(200.0); }   // устанавливаем момент на шестерни
-    int z = 10;
-    for (int i = 0; i < 5; i++) {            // указываем колдичество зубьев для шестерни
-        T.get_gear(i).set_z(z);
-        z += 10;
+    for (auto i = std::begin(gears); i != std::end(gears); i++) {   //�������� ������� �� ��������
+        i->set_temperature_of_oil(temperature_of_oil);
+        if (i == std::begin(gears)) i->set_rpm(rpm);
+        else {
+            i->set_rpm((i - 1)->get_rpm() * (i - 1)->get_z() / i->get_z());
+        }
     }
 
+    for (int a = sizeof(gears) / sizeof(gears[0]) - 1; a > -1; a--) {
+        if (a == sizeof(gears) / sizeof(gears[0]) - 1) {
+            get_gear(a).update(0.0);
+        }
+        else {
+            // i->set_moment_out(i->get_moment_out() + (i - 1)->get_moment_total());
+            get_gear(a).update(get_gear(a + 1).get_moment_total());
+            //a->update((a + 1)->get_moment_total());
+        }
+    }
+    
 
 
-    //for (int i = 0; i < 5; i++){ std::cout << T.get_gear(i).get_z() << std::endl; }
-    //T.set_normal_force(10000.0);
-
-
-    T.update();
-    std::cout << T.get_gear(0).get_moment_total() << std::endl;
-    //std::cout << T.get_moment_friction() << std::endl;
-    //std::cout << T.get_rb().get_moment_rpm() << std::endl;
-    // std::cout << T.get_rb().get_moment_static() << std::endl;
-    //std::cout << T.get_heat() << std::endl;
-
-    return 0;
+    rb.set_dt(dt);
+    rb.set_normal_force(normal_force);
+    rb.set_rpm(rpm);
+    rb.set_temperature_of_oil(temperature_of_oil);
+    rb.update();
+    heat = rb.get_heat();
+    moment_friction = rb.get_moment_friction();
 }
+
+void Transmission::set_dt(double dt_) {
+    if (dt_ < 0) dt_ = 0.0;
+    dt = dt_;
+    rb.set_dt(dt_);
+}
+
+void Transmission::set_axial_force(double axial_force_) {
+    if (axial_force_ < 0) axial_force_ = 0.0;
+    axial_force = axial_force_;
+}
+
+void Transmission::set_normal_force(double normal_force_) {
+    if (normal_force_ < 0) normal_force_ = 0.0;
+    normal_force = normal_force_;
+    rb.set_normal_force(normal_force_);
+}
+
+void Transmission::set_temperature_of_oil(double temperature_of_oil_) {
+    if (temperature_of_oil_ < 1.0) temperature_of_oil_ = 1.0;
+    temperature_of_oil = temperature_of_oil_;
+    rb.set_temperature_of_oil(temperature_of_oil_);
+};
+
+void Transmission::set_rpm(double rpm_) {
+    if (rpm_ < 0) rpm_ = 0.0;
+    rpm = rpm_;
+    rb.set_rpm(rpm_);
+}
+
+
