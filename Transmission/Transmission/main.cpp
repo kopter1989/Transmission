@@ -4,7 +4,7 @@
 
 int main() {
     Transmission T;
-    T.set_rpm(10000.0);
+    T.set_rps(160.0);
     T.set_temperature_of_oil(380);
 
     for (int i = 0; i < 5; i++) { T.get_gear(i).set_moment_out(200.0); }   // устанавливаем момент на шестерни

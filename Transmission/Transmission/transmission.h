@@ -17,7 +17,7 @@ private:
     double heat = 0.0;
     double axial_force = 0.0;
     double normal_force = 0.0;
-    double rpm = 0.0;
+    double rps = 0.0;
     double temperature_of_oil = 288.0;
     double moment_friction = 0.0;
 
@@ -28,7 +28,7 @@ public:
     void set_axial_force(double axial_force_);
     void set_normal_force(double normal_force_);
     void set_temperature_of_oil(double temperature_of_oil_);
-    void set_rpm(double rpm_);
+    void set_rps(double rps_);
 
     double get_dt() { return dt; };
     double get_heat() { return heat; };

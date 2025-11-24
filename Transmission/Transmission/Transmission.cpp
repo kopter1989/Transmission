@@ -1,4 +1,4 @@
-#include "transmiss.h"
+#include "transmission.h"
 
 void Transmission::update() {
     //g.update();
@@ -7,9 +7,9 @@ void Transmission::update() {
 
     for (auto i = std::begin(gears); i != std::end(gears); i++) {   //передаем обороты на шестерни
         i->set_temperature_of_oil(temperature_of_oil);
-        if (i == std::begin(gears)) i->set_rpm(rpm);
+        if (i == std::begin(gears)) i->set_rps(rps);
         else {
-            i->set_rpm((i - 1)->get_rpm() * (i - 1)->get_z() / i->get_z());
+            i->set_rps((i - 1)->get_rps() * (i - 1)->get_z() / i->get_z());
         }
     }
 
@@ -28,7 +28,7 @@ void Transmission::update() {
 
     rb.set_dt(dt);
     rb.set_normal_force(normal_force);
-    rb.set_rpm(rpm);
+    rb.set_rps(rps);
     rb.set_temperature_of_oil(temperature_of_oil);
     rb.update();
     heat = rb.get_heat();
@@ -58,10 +58,10 @@ void Transmission::set_temperature_of_oil(double temperature_of_oil_) {
     rb.set_temperature_of_oil(temperature_of_oil_);
 };
 
-void Transmission::set_rpm(double rpm_) {
-    if (rpm_ < 0) rpm_ = 0.0;
-    rpm = rpm_;
-    rb.set_rpm(rpm_);
+void Transmission::set_rps(double rps_) {
+    if (rps_ < 0) rps_ = 0.0;
+    rps = rps_;
+    rb.set_rps(rps_);
 }
 
 

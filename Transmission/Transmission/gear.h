@@ -13,7 +13,7 @@ private:
     double viscosity = 0.0;
     double temperature_of_oil = 288.0;
     int z = 40;   //number of teeth
-    double rpm = 0.0;
+    double rps = 0.0;
     double diameter = 0.2;  //m
     double moment = 0.0;
     double moment_out = 0.0;
@@ -34,8 +34,8 @@ public:
     int get_z() { return z; };
     void set_dt(double dt_) { dt = dt_; };
     double get_dt() { return dt; };
-    void set_rpm(double rpm_) { rpm = rpm_; };
-    double get_rpm() { return rpm; };
+    void set_rps(double rps_) { rps = rps_; };
+    double get_rps() { return rps; };
     void set_diameter(double diameter_) { diameter = diameter_; };
     void set_f_exp(double f_exp_) { f_expon = f_exp_; };
     double get_heat() { return heat; };
